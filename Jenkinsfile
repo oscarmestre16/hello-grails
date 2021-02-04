@@ -19,16 +19,7 @@ pipeline {
             post{
                 always{
                     junit 'build/test-results/test/TEST-*.xml'
-                    echo 'Publish Codenarc report'
-                    publishHTML (
-                        target : [
-                        allowMissing: false,
-                        alwaysLinkToLastBuild: false,
-                        keepAll: true,
-                        reportDir: 'build/test-results/test/TEST-*.xml',
-                        reportFiles: '*.html',
-                        reportName: 'My Reports',
-                        reportTitles: 'Codenarc Report'])
+                    
                 }
             }
 
