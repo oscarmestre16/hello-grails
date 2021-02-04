@@ -22,8 +22,8 @@ pipeline {
                     echo 'Publish Codenarc report'
                     publishHTML (
                         target : [
-                        allowMissing: firefoxHeadless,
-                        alwaysLinkToLastBuild: true,
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
                         keepAll: true,
                         reportDir: 'build/test-results/test/TEST-*.xml',
                         reportFiles: '*.html',
