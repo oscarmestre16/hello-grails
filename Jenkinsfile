@@ -2,10 +2,11 @@ pipeline {
     agent any
     stages {
         stage('Build') {
-            steps {
+            steps {               
                 configFileProvider(
-                    [configFile(fileId: 'hello-grails-gradle.properties', variable: 'gradle_properties')]) {
-                }
+                    [configFile(fileId: 'hello-grails-gradle.properties', targetLocation: 'gradle.properties')])         {
+                        sh './gradlew iT'
+                    }
                 withGradle{
                     sh './gradlew assemble'
                 }
