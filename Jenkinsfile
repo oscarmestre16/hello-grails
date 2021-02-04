@@ -16,7 +16,7 @@ pipeline {
                     sh './gradlew codenarcTest'
                 }
             }
-            port{
+            post{
                 always{
                     junit 'build/test-results/test/TEST-*.xml'
                 }
