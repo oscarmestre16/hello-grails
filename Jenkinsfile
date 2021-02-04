@@ -3,10 +3,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {               
-                configFileProvider(
-                    [configFile(fileId: 'hello-grails-gradle.properties', targetLocation: 'gradle.properties')])         {
-                        sh './gradlew iT'
-                    }
                 withGradle{
                     sh './gradlew assemble'
                 }
@@ -15,9 +11,11 @@ pipeline {
         stage('Test') {
             steps {
                 withGradle{
-                    sh './gradlew clean test'
-                    sh './gradlew -Dgeb.env=firefoxHeadless iT'
-                    sh './gradlew codenarcTest'
+                    sh './gradlew test'
+                    configFileProvider(
+                        [configFile(fileId: 'hello-grails-gradle.properties', targetLocation: 'gradle.properties')])         {
+                            sh './gradlew integrationTest'
+                        }
                 }
             }
             post{
