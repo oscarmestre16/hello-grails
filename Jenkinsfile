@@ -5,7 +5,6 @@ pipeline {
             steps {
                 configFileProvider(
                     [configFile(fileId: 'hello-grails-gradle.properties', variable: 'gradle_properties')]) {
-                    sh 'mvn -s $gradle_properties clean package'
                 }
                 withGradle{
                     sh './gradlew assemble'
